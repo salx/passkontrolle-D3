@@ -52,6 +52,20 @@
       }
   });
 
+// load country-names and generate json
+    var countryNameList = {};
+    d3.xhr( "world-country-names.tsv", function(d){
+      var rows = d3.tsc.parseRows( d.response );
+
+      for( var i=2; i<rows.length; i++ ){
+        var line = rows[i]
+        for( var j=1; j<line.length; j++ )
+          var countryCode = line[0];
+          var countryName = line[1];
+          countryNameList[countryCode] = countryName;
+      }
+    } )
+
 //load geodata
 	d3.json("world-50m.json", function(error, world) {
     // convert topojson back to geojson (will be obsolete in future versions)
@@ -72,11 +86,17 @@
 //add the text for the mouseover
     countryGroups.append("title")
       .text( function( d ){
-        return d.id;
+        //return d.id;
+        return 
       });
-
+/*
+ToDo: on click select g instead of countries, 
+Then do the coloring for the path
+cange the text 
+*/
 //define an on.click-event that loads the data for the country-object that has been clicked
     svg.selectAll( '.country' )
+    //svg.selectAll( '.g' )
     // using an anonymous function, load an array of data with the values for the current country? 
     .on( 'click', function( d ) {
       // loading the dataset for the country that has been clicked
@@ -98,5 +118,6 @@
         }
       } )
     } );
-
+  });
 })();
+
