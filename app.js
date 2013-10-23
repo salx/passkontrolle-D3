@@ -59,12 +59,21 @@
 		var countries = topojson.object(world, world.objects.countries).geometries;
 
 //load countries to svg
-		svg.selectAll(".country")
-			.data(countries)
-			.enter()
-			.insert("path")
+		var countryGroups = svg.selectAll(".country")
+      .data(countries)
+      .enter()
+      .append("g");
+
+//define a group for the mouseover 
+		countryGroups.insert("path")
 			.attr("class", "country")
 			.attr("d", path);
+
+//add the text for the mouseover
+    countryGroups.append("title")
+      .text( function( d ){
+        return d.id;
+      });
 
 //define an on.click-event that loads the data for the country-object that has been clicked
     svg.selectAll( '.country' )
@@ -84,13 +93,10 @@
           return 'country restriction' + 0; //id it's the clicked country, color grey
         }else if( restrictions[ currentID ] ) {
           return 'country restriction' + restrictions[ currentID ]; //else, apply restriction-code
-        } else{
+        }else{
           return 'country'; //if none found, leave as is
         }
-      } );
-
+      } )
     } );
-
-	});
 
 })();
