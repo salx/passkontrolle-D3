@@ -52,6 +52,7 @@
       }
   });
 
+<<<<<<< HEAD
 // load country-names and generate json
     var countryNameList = {};
     d3.xhr( "world-country-names.tsv", function(d){
@@ -67,6 +68,8 @@
       }
     } )
 
+=======
+>>>>>>> 7c66a6f65aa5c1c9354dcf8cef97f59aaaa66bf7
 //load geodata
 	d3.json("world-50m.json", function(error, world) {
     // convert topojson back to geojson (will be obsolete in future versions)
@@ -74,6 +77,7 @@
 		var countries = topojson.object(world, world.objects.countries).geometries;
 
 //load countries to svg
+<<<<<<< HEAD
 		var countryGroups = svg.selectAll(".country")
       .data(countries)
       .enter()
@@ -98,6 +102,17 @@ cange the text
 //define an on.click-event that loads the data for the country-object that has been clicked
     svg.selectAll( '.country' )
     //svg.selectAll( '.g' )
+=======
+		svg.selectAll(".country")
+			.data(countries)
+			.enter()
+			.insert("path")
+			.attr("class", "country")
+			.attr("d", path);
+
+//define an on.click-event that loads the data for the country-object that has been clicked
+    svg.selectAll( '.country' )
+>>>>>>> 7c66a6f65aa5c1c9354dcf8cef97f59aaaa66bf7
     // using an anonymous function, load an array of data with the values for the current country? 
     .on( 'click', function( d ) {
       // loading the dataset for the country that has been clicked
@@ -114,6 +129,7 @@ cange the text
           return 'country restriction' + 0; //id it's the clicked country, color grey
         }else if( restrictions[ currentID ] ) {
           return 'country restriction' + restrictions[ currentID ]; //else, apply restriction-code
+<<<<<<< HEAD
         }else{
           return 'country'; //if none found, leave as is
         }
@@ -122,3 +138,15 @@ cange the text
   });
 })();
 
+=======
+        } else{
+          return 'country'; //if none found, leave as is
+        }
+      } );
+
+    } );
+
+	});
+
+})();
+>>>>>>> 7c66a6f65aa5c1c9354dcf8cef97f59aaaa66bf7
