@@ -55,14 +55,15 @@
 // load country-names and generate json
     var countryNameList = {};
     d3.xhr( "world-country-names.tsv", function(d){
-      var rows = d3.tsc.parseRows( d.response );
+      var rows = d3.tsv.parseRows( d.response );
 
       for( var i=2; i<rows.length; i++ ){
         var line = rows[i]
-        for( var j=1; j<line.length; j++ )
+        for( var j=1; j<line.length; j++ ){
           var countryCode = line[0];
           var countryName = line[1];
           countryNameList[countryCode] = countryName;
+        }
       }
     } )
 
