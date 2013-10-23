@@ -88,7 +88,7 @@
     countryGroups.append("title")
       .text( function( d ){
         //return d.id;
-        return 
+        return countryNameList[d.id]
       });
 /*
 ToDo: on click select g instead of countries, 
