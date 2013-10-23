@@ -117,8 +117,8 @@ cange the text
         }else{
           return 'country'; //if none found, leave as is
         }
-      } )
-    } );
+      })
+    });
   });
 })();
 
